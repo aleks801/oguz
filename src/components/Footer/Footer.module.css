@@ -1,0 +1,18 @@
+.root {
+  height: 45px;
+  width: 100%;
+  box-sizing: border-box;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: #fff3e0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}

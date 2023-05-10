@@ -1,0 +1,30 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  background: #fff8ee;
+  padding: 50px 10px;
+  box-sizing: border-box;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  color: #5a4b33;
+  font-family: chava;
+}
+
+h1,
+h3 {
+  font-weight: 400;
+}
+
+p {
+  font-family: "Advanced Pixel-7";
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 17px;
+}
