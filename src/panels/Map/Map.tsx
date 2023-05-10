@@ -11,7 +11,7 @@ import { mapItems } from "./data"
 
 type Props = {
   id: string
-  go: (e: any) => void
+  go: (panelId: string) => void
 }
 
 export const Map = ({ id, go }: Props) => {
@@ -28,8 +28,7 @@ export const Map = ({ id, go }: Props) => {
                 className={cn(styles.point, { [styles.vertical]: isRed })}
                 key={i}
                 style={item.style}
-                onClick={isRed ? go : undefined}
-                data-to="lesson"
+                onClick={() => (isRed ? go("lesson") : undefined)}
               >
                 {isRed && (
                   <div>

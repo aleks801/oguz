@@ -6,14 +6,14 @@ import btn from "assets/btn_yes.png"
 
 type Props = {
   id: string
-  go: (e: any) => void
+  go: (panelId: string) => void
 }
 
 export const Lesson = ({ id, go }: Props) => {
   return (
     <Panel id={id}>
       <div className={styles.root}>
-        <LessonHeader onClose={() => go({ currentTarget: { dataset: { to: "map" } } })} />
+        <LessonHeader onClose={() => go("map")} />
         <div className={styles.content}>
           <h1>
             Вводный урок.
