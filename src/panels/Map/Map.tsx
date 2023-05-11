@@ -19,7 +19,7 @@ export const Map = ({ id, go }: Props) => {
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
-      // setPopup("intro")
+      setPopup("intro")
     }, 2000)
 
     return () => clearTimeout(timeoutId)

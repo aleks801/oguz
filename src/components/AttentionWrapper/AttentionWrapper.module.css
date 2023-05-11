@@ -1,0 +1,20 @@
+.root {
+  position: relative;
+  margin: 10px 0;
+}
+
+.back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.content {
+  display: flex;
+  position: relative;
+  padding: 10px;
+  gap: 10px;
+  color: #ef6977;
+}

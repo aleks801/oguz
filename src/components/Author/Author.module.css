@@ -1,0 +1,19 @@
+.root {
+  display: flex;
+  gap: 10px;
+}
+
+.root.full {
+  width: 100%;
+}
+
+.text {
+  display: flex;
+  align-items: center;
+  font-family: "Advanced Pixel-7";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 17px;
+  color: #5a4b33;
+}

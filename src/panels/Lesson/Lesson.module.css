@@ -6,6 +6,7 @@
   background: #fff8ee;
   padding: 50px 10px;
   box-sizing: border-box;
+  gap: 10px;
 }
 
 .content {
@@ -18,11 +19,26 @@
 }
 
 h1,
+h2,
 h3 {
   font-weight: 400;
 }
 
+ol,
 p {
+  margin: 0;
+}
+
+li h2 {
+  font-family: "Advanced Pixel-7";
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 17px;
+  text-decoration: underline;
+}
+
+p,
+span {
   font-family: "Advanced Pixel-7";
   font-weight: 400;
   font-size: 20px;

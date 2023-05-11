@@ -4,8 +4,8 @@ import styles from "./PopupDialog.module.css"
 import { PopupContext, PopupType } from "store/popupContext"
 import speechBaloonBig from "assets/speech_balloon_big.png"
 import speechBaloonSmall from "assets/speech_balloon_small.png"
-import buttonNext from "assets/btn_next_green.png"
-import author from "assets/author.png"
+import { Button } from "components/Button"
+import { Author } from "components/Author"
 
 const dialogText: Record<PopupType, React.ReactNode> = {
   intro: (
@@ -40,13 +40,11 @@ export const PopupDialog = () => {
           >
             <div className={styles.text}>{dialogText[popup]}</div>
             <div className={styles.button}>
-              <img src={buttonNext} onClick={() => setPopup(undefined)} />
+              <Button onClick={() => setPopup(undefined)} variant="green_next" />
             </div>
           </div>
         </div>
-        <div>
-          <img src={author} />
-        </div>
+        <Author withDescription={false} />
       </>
     )
   }, [popup])

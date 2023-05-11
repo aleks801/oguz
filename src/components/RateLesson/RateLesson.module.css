@@ -1,0 +1,14 @@
+.root {
+  margin-bottom: 15px;
+}
+
+.title {
+  text-align: center;
+}
+
+.smiles {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  width: 100%;
+}
