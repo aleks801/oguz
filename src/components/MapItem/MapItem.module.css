@@ -1,0 +1,67 @@
+.root {
+  position: absolute;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.root.vertical {
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.mark {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 36px;
+  height: 28px;
+}
+
+.label {
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.label span {
+  color: #5a4b33;
+  font-family: chava;
+  text-shadow: -1px 0px 0px #fff3e0, 1px 0px 0px #fff3e0, 0px -1px 0px #fff3e0, 0px 1px 0px #fff3e0;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: -0.03em;
+}
+
+.bubble {
+  position: relative;
+  width: 115px;
+}
+
+.bubble img {
+  width: 100%;
+}
+
+.text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-family: "Advanced Pixel-7";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 12px;
+  color: #5a4b33;
+  padding: 0 5px;
+  display: inline-flex;
+  align-items: center;
+  height: 35px;
+  text-align: center;
+  width: 100%;
+  justify-content: center;
+  box-sizing: border-box;
+}
