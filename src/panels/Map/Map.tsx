@@ -8,6 +8,8 @@ import lock from "../../assets/map_lock.png"
 import bubble from "../../assets/map_bubble.png"
 import user from "../../assets/map_user.png"
 import { mapItems } from "./data"
+import { useContext, useEffect } from "react"
+import { PopupContext } from "store/popupContext"
 
 type Props = {
   id: string
@@ -15,6 +17,16 @@ type Props = {
 }
 
 export const Map = ({ id, go }: Props) => {
+  const { setPopup } = useContext(PopupContext)
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setPopup("intro")
+    }, 2000)
+
+    return () => clearTimeout(timeoutId)
+  }, [])
+
   return (
     <Panel id={id}>
       <div className={styles.root}>
@@ -41,7 +53,7 @@ export const Map = ({ id, go }: Props) => {
                 </div>
                 <div className={styles.bubble}>
                   <img src={bubble} />
-                  <span className={styles.text}>{item.text}</span>
+                  <div className={styles.text}>{item.text}</div>
                 </div>
               </div>
             )
