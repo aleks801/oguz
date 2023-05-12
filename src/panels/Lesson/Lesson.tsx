@@ -9,7 +9,7 @@ type Props = {
 }
 
 export const Lesson = ({ id, go }: Props) => {
-  const lessonContent = lessonsData[4]
+  const lessonContent = lessonsData[10]
   return (
     <Panel id={id}>
       <div className={styles.root}>
