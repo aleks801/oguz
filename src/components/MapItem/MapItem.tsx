@@ -27,7 +27,7 @@ export const MapItem = ({ id, text, style, currentProgress, go }: Props) => {
       )}
       <div className={styles.mark}>
         <div className={styles.label}>
-          {isCurrent ? <span>{id}</span> : isCompleted ? <img src={check} /> : <img src={lock} />}
+          {isCurrent ? <span>{id + 1}</span> : isCompleted ? <img src={check} /> : <img src={lock} />}
         </div>
         <img src={isCurrent ? pointRed : isCompleted ? pointViolent : pointBlue} />
       </div>
