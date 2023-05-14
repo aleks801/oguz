@@ -19,12 +19,7 @@ export const MapItem = ({ id, text, style, currentProgress, go }: Props) => {
   const isCompleted = currentProgress >= id
 
   return (
-    <div
-      className={cn(styles.root, { [styles.vertical]: isCurrent })}
-      key={id}
-      style={style}
-      onClick={() => (isCurrent ? go("lesson") : undefined)}
-    >
+    <div className={cn(styles.root, { [styles.vertical]: isCurrent })} style={style} onClick={() => go(`lesson_${id}`)}>
       {isCurrent && (
         <div>
           <img src={user} />

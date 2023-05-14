@@ -9,12 +9,13 @@ import "./index.css"
 import { Lesson } from "panels/Lesson/Lesson"
 import { PopupDialog } from "components/PopupDialog/PopupDialog"
 import { PopupContext, PopupType } from "store/popupContext"
+import { contents } from "panels/Lesson/contents"
 
 const App = () => {
   const [activePanel, setActivePanel] = useState("map")
   const [activePopup, setActivePopup] = useState<undefined | PopupType>()
 
-  const go = (panelId: string) => {
+  const go = (panelId: string, hashObj?: string) => {
     setActivePanel(panelId)
   }
 
@@ -28,7 +29,9 @@ const App = () => {
                 <PopupDialog />
                 <View activePanel={activePanel}>
                   <Map id="map" go={go} />
-                  <Lesson id="lesson" go={go} />
+                  {contents.map((contestItem) => (
+                    <Lesson id={`lesson_${contestItem.chapterId}`} go={go} chapterId={contestItem.chapterId} />
+                  ))}
                 </View>
                 <Footer />
               </PopupContext.Provider>

@@ -19,7 +19,7 @@ export const Map = ({ id, go }: Props) => {
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
-      setPopup("intro")
+      // setPopup("intro")
     }, 2000)
 
     return () => clearTimeout(timeoutId)
@@ -30,8 +30,8 @@ export const Map = ({ id, go }: Props) => {
       <div className={styles.root}>
         <div className={styles.map}>
           <img src={map} />
-          {mapItems.map((mapItem, index) => (
-            <MapItem currentProgress={currentProgress} go={go} {...mapItem} />
+          {mapItems.map((mapItem) => (
+            <MapItem currentProgress={currentProgress} go={go} key={mapItem.id} {...mapItem} />
           ))}
         </div>
       </div>
