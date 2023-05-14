@@ -6,6 +6,7 @@ import { mapItems } from "./data"
 import { useContext, useEffect } from "react"
 import { PopupContext } from "store/popupContext"
 import { MapItem } from "components/MapItem/MapItem"
+import { useOnce } from "components/hooks/useOnce"
 
 type Props = {
   id: string
@@ -23,6 +24,10 @@ export const Map = ({ id, go }: Props) => {
     }, 2000)
 
     return () => clearTimeout(timeoutId)
+  }, [])
+
+  useOnce(() => {
+    setTimeout(() => window.scroll(0, 9999), 200)
   }, [])
 
   return (

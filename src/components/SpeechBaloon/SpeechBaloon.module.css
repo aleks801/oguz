@@ -1,5 +1,6 @@
 .root {
   position: relative;
+  margin-top: 20px;
 }
 
 .back {
@@ -12,5 +13,5 @@
 
 .content {
   position: relative;
-  padding: 10px 15px 35px;
+  padding: 0px 15px 35px 15px;
 }
