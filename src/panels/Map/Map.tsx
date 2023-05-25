@@ -15,6 +15,9 @@ import r2 from "../../assets/ravens/2.png"
 import r3 from "../../assets/ravens/3.png"
 import r4 from "../../assets/ravens/4.png"
 
+import l1 from "../../assets/loan/1.png"
+import l2 from "../../assets/loan/2.png"
+
 import { mapItems } from "./data"
 import { useContext, useEffect } from "react"
 import { PopupContext } from "store/popupContext"
@@ -53,6 +56,8 @@ export const Map = ({ id, go }: Props) => {
           <FrameAnimation frames={[w1_1, w1_2, w1_3]} style={{ position: "absolute", top: 315, left: 50 }} />
           <FrameAnimation frames={[w2_1, w2_2, w2_3]} style={{ position: "absolute", top: 1400, left: 42 }} />
           <FrameAnimation frames={[r1, r2, r3, r4]} style={{ position: "absolute", top: 1640, left: 30 }} />
+          <FrameAnimation slight frames={[l1, l2]} framesPerSecond={1} style={{ position: "absolute", top: 1680, left: 40 }} />
+          <FrameAnimation slight frames={[l2, l1]} framesPerSecond={1} style={{ position: "absolute", top: 1715, right: 20 }} />
           <Clouds />
           {mapItems.map((mapItem) => (
             <MapItem currentProgress={currentProgress} go={go} key={mapItem.id} {...mapItem} />
