@@ -7,6 +7,7 @@ import { useContext, useEffect } from "react"
 import { PopupContext } from "store/popupContext"
 import { MapItem } from "components/MapItem/MapItem"
 import { useOnce } from "components/hooks/useOnce"
+import { Clouds } from "components/Clouds/Clouds"
 
 type Props = {
   id: string
@@ -35,6 +36,7 @@ export const Map = ({ id, go }: Props) => {
       <div className={styles.root}>
         <div className={styles.map}>
           <img src={map} />
+          <Clouds />
           {mapItems.map((mapItem) => (
             <MapItem currentProgress={currentProgress} go={go} key={mapItem.id} {...mapItem} />
           ))}
