@@ -4,7 +4,11 @@ import shareBtn from "../../assets/btn_share.png"
 import soundBtn from "../../assets/btn_sound.png"
 import likeBtn from "../../assets/btn_like.png"
 
-export const Footer = () => {
+type Props = {
+  go: (panelId: string) => void
+}
+
+export const Footer = ({ go }: Props) => {
   return (
     <div className={styles.root}>
       <div className={styles.actions}>
@@ -12,7 +16,7 @@ export const Footer = () => {
         <img src={likeBtn} />
         <img src={soundBtn} />
       </div>
-      <img src={menuBtn} />
+      <img src={menuBtn} onClick={() => go("map")} />
     </div>
   )
 }

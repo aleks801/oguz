@@ -33,7 +33,7 @@ const App = () => {
                     <Lesson id={`lesson_${contestItem.chapterId}`} go={go} chapterId={contestItem.chapterId} />
                   ))}
                 </View>
-                <Footer />
+                <Footer go={go} />
               </PopupContext.Provider>
             </SplitCol>
           </SplitLayout>
