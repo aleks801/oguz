@@ -8,19 +8,35 @@
 
 .cloud {
   position: absolute;
-  right: -175px;
+  left: -175px;
+  animation-name: moveL;
   transform: translateX(0);
-  animation-name: move;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
 }
 
-@keyframes move {
+.cloud.right {
+  right: -175px;
+  left: unset;
+  animation-name: moveR;
+}
+
+@keyframes moveR {
   0% {
     right: -175px;
   }
 
   100% {
     right: 375px;
+  }
+}
+
+@keyframes moveL {
+  0% {
+    left: -175px;
+  }
+
+  100% {
+    left: 375px;
   }
 }

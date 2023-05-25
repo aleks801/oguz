@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react"
+import cn from "classnames"
 import c1 from "../../assets/cloud_1.png"
 import c2 from "../../assets/cloud_2.png"
 import c3 from "../../assets/cloud_3.png"
@@ -26,7 +27,9 @@ const CloudsRaw = () => {
     <div className={styles.root} ref={ref}>
       {images.map((cloud, index) => (
         <div
-          className={styles.cloud}
+          className={cn(styles.cloud, {
+            [styles.right]: between(0, 1),
+          })}
           style={{ top: index * gap + Math.floor(Math.random() * 10), animationDuration: between(18, 30) + "s" }}
         >
           <img src={cloud} />
