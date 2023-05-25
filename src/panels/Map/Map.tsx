@@ -6,6 +6,10 @@ import w1_1 from "../../assets/waterfall1/1.png"
 import w1_2 from "../../assets/waterfall1/2.png"
 import w1_3 from "../../assets/waterfall1/3.png"
 
+import w2_1 from "../../assets/waterfall2/1.png"
+import w2_2 from "../../assets/waterfall2/2.png"
+import w2_3 from "../../assets/waterfall2/3.png"
+
 import { mapItems } from "./data"
 import { useContext, useEffect } from "react"
 import { PopupContext } from "store/popupContext"
@@ -42,6 +46,7 @@ export const Map = ({ id, go }: Props) => {
         <div className={styles.map}>
           <img src={map} />
           <FrameAnimation frames={[w1_1, w1_2, w1_3]} style={{ position: "absolute", top: 315, left: 50 }} />
+          <FrameAnimation frames={[w2_1, w2_2, w2_3]} style={{ position: "absolute", top: 1400, left: 42 }} />
           <Clouds />
           {mapItems.map((mapItem) => (
             <MapItem currentProgress={currentProgress} go={go} key={mapItem.id} {...mapItem} />
