@@ -15,7 +15,6 @@ export const FrameAnimation = ({ frames, framesPerSecond = 10, style = {} }: Pro
   useEffect(() => {
     const intervalId = setInterval(() => {
       const newIndex = curIndex.current + 1 === frames.length ? 0 : curIndex.current + 1
-      console.log(curIndex, frames.length, newIndex)
       curIndex.current = newIndex
       setNonce(newIndex)
     }, 1000 / framesPerSecond)

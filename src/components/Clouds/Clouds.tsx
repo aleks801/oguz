@@ -21,7 +21,6 @@ const CloudsRaw = () => {
     setHeight(ref.current ? ref.current.getBoundingClientRect().height : 2065)
   }, [])
   const gap = Math.floor(height / images.length)
-  console.log(gap)
 
   return (
     <div className={styles.root} ref={ref}>
