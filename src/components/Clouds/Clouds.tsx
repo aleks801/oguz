@@ -16,9 +16,9 @@ const images = [c1, c2, c3, c4, c5, c6, c7, c8, c9]
 
 const CloudsRaw = () => {
   const ref = useRef<HTMLDivElement>()
-  const [height, setHeight] = useState(0)
+  const [height, setHeight] = useState(2065)
   useEffect(() => {
-    setHeight(ref.current ? ref.current.getBoundingClientRect().height : 2065)
+    // setHeight(ref.current ? ref.current.getBoundingClientRect().height : 2065)
   }, [])
   const gap = Math.floor(height / images.length)
 
