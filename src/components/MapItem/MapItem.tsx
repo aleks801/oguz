@@ -6,8 +6,10 @@ import pointBlue from "../../assets/map_point_b.png"
 import lock from "../../assets/map_lock.png"
 import check from "../../assets/check.png"
 import bubble from "../../assets/map_bubble.png"
-import user from "../../assets/map_user.png"
+import guy from "../../assets/map_guy.png"
+import girl from "../../assets/map_girl.png"
 import cn from "classnames"
+import { useVkProfileData } from "components/hooks/useVkProfileData"
 
 type Props = {
   currentProgress: number
@@ -15,6 +17,7 @@ type Props = {
 } & MapItemConfig
 
 export const MapItem = ({ id, text, style, currentProgress, go }: Props) => {
+  const { sex } = useVkProfileData()
   const isCurrent = id === currentProgress
   const isCompleted = currentProgress >= id
 
@@ -22,7 +25,7 @@ export const MapItem = ({ id, text, style, currentProgress, go }: Props) => {
     <div className={cn(styles.root, { [styles.vertical]: isCurrent })} style={style} onClick={() => go(`lesson_${id}`)}>
       {isCurrent && (
         <div>
-          <img src={user} />
+          <img src={sex === "male" ? guy : girl} />
         </div>
       )}
       <div className={styles.mark}>
