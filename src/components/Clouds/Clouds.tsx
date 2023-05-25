@@ -30,7 +30,7 @@ const CloudsRaw = () => {
           className={cn(styles.cloud, {
             [styles.right]: between(0, 1),
           })}
-          style={{ top: index * gap + Math.floor(Math.random() * 10), animationDuration: between(18, 30) + "s" }}
+          style={{ top: index * gap + between(0, 100), animationDuration: between(18, 30) + "s" }}
         >
           <img src={cloud} />
         </div>
