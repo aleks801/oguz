@@ -4,11 +4,12 @@ import styles from "./FrameAnimation.module.css"
 
 type Props = {
   frames: string[]
+  slight?: boolean
   framesPerSecond?: number
   style?: CSSProperties
 }
 
-export const FrameAnimation = ({ frames, framesPerSecond = 10, style = {} }: Props) => {
+export const FrameAnimation = ({ frames, slight, framesPerSecond = 10, style = {} }: Props) => {
   const [, setNonce] = useState(0)
   const curIndex = useRef(0)
 
@@ -24,7 +25,11 @@ export const FrameAnimation = ({ frames, framesPerSecond = 10, style = {} }: Pro
   return (
     <div style={style}>
       {frames.map((frame, index) => (
-        <img src={frame} key={index} className={cn(styles.image, { [styles.visible]: index === curIndex.current })} />
+        <img
+          src={frame}
+          key={index}
+          className={cn(styles.image, { [styles.slight]: slight, [styles.visible]: index === curIndex.current })}
+        />
       ))}
     </div>
   )

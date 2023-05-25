@@ -2,6 +2,16 @@
   display: none;
 }
 
+.image.slight {
+  display: inline;
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+}
+
 .image.visible {
   display: inline;
+}
+
+.image.slight.visible {
+  opacity: 1;
 }
