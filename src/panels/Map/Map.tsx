@@ -59,8 +59,8 @@ export const Map = ({ id, go }: Props) => {
           <FrameAnimation slight frames={[l1, l2]} framesPerSecond={1} style={{ position: "absolute", top: 1680, left: 40 }} />
           <FrameAnimation slight frames={[l2, l1]} framesPerSecond={1} style={{ position: "absolute", top: 1715, right: 20 }} />
           <Clouds />
-          {mapItems.map((mapItem) => (
-            <MapItem currentProgress={currentProgress} go={go} key={mapItem.id} {...mapItem} />
+          {mapItems.map(({ id, text, style }) => (
+            <MapItem currentProgress={currentProgress} go={go} key={id} id={id} text={text} style={style} />
           ))}
         </div>
       </div>

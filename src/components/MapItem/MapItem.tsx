@@ -21,11 +21,16 @@ export const MapItem = ({ id, text, style, currentProgress, go }: Props) => {
   const isCurrent = id === currentProgress
   const isCompleted = currentProgress >= id
 
+  let itemStyle = style
+  if (isCurrent) {
+    itemStyle = { ...itemStyle, bottom: itemStyle.bottom - 20 }
+  }
+
   return (
-    <div className={cn(styles.root, { [styles.vertical]: isCurrent })} style={style} onClick={() => go(`lesson_${id}`)}>
+    <div className={cn(styles.root, { [styles.vertical]: isCurrent })} style={itemStyle} onClick={() => go(`lesson_${id}`)}>
       {isCurrent && (
         <div>
-          <img src={sex === "male" ? guy : girl} />
+          <img src={sex !== "male" ? guy : girl} />
         </div>
       )}
       <div className={styles.mark}>

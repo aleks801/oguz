@@ -1,6 +1,6 @@
 export type MapItemConfig = {
   text: string
-  style: { bottom: number | string; left: number | string }
+  style: { bottom: number; left: number | string }
   id: number
 }
 
