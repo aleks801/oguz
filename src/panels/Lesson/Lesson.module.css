@@ -5,6 +5,7 @@
   width: 100%;
   background: #fff8ee;
   padding: 50px 10px;
+  padding-top: 10px;
   box-sizing: border-box;
   gap: 10px;
 }
@@ -16,6 +17,7 @@
   gap: 5px;
   color: #5a4b33;
   font-family: chava;
+  padding-top: 42px;
 }
 
 h1,
