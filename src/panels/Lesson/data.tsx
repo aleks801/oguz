@@ -11,14 +11,14 @@ import { YesNo } from "components/YesNo"
 export type LessonData = {
   chapterId: number
   episodeId: number
-  content: React.ReactNode
+  content: (save: () => void) => React.ReactNode
 }
 
 export const lessonsData: LessonData[] = [
   {
     chapterId: 0,
     episodeId: 1,
-    content: (
+    content: (save) => (
       <>
         <h1>
           Вводный урок.
@@ -29,14 +29,14 @@ export const lessonsData: LessonData[] = [
         </p>
         <img style={{ margin: "32px 0" }} src={video} />
         <h3 style={{ marginBottom: 16 }}>Готов пройти курс до конца?</h3>
-        <Button variant="yes_green" />
+        <Button variant="yes_green" onClick={save} />
       </>
     ),
   },
   {
     chapterId: 1,
     episodeId: 1,
-    content: (
+    content: (save) => (
       <>
         <h1>Главные ошибки в отношениях «Доходы-расходы». Кассовый разрыв</h1>
         <p>
@@ -67,7 +67,7 @@ export const lessonsData: LessonData[] = [
   {
     chapterId: 1,
     episodeId: 2,
-    content: (
+    content: (save) => (
       <>
         <h1>Кредиты — зло или возможность? Как правильно работать с займами.</h1>
         <h3>Есть ли у тебя кредиты?</h3>
@@ -167,7 +167,7 @@ export const lessonsData: LessonData[] = [
   {
     chapterId: 2,
     episodeId: 1,
-    content: (
+    content: (save) => (
       <>
         <h1>Правила финансовой грамотности</h1>
         <SpeechBaloon>
@@ -192,7 +192,7 @@ export const lessonsData: LessonData[] = [
   {
     chapterId: 2,
     episodeId: 2,
-    content: (
+    content: (save) => (
       <>
         <h1>Что приводит тебя к бедности?</h1>
         <AttentionWrapper>
@@ -214,7 +214,7 @@ export const lessonsData: LessonData[] = [
   {
     chapterId: 2,
     episodeId: 3,
-    content: (
+    content: (save) => (
       <>
         <h1>Время – деньги. Как правильно считать цену своей работы?</h1>
         <h3>Прежде чем посмотришь следующее видео, ответь:</h3>
@@ -271,7 +271,7 @@ export const lessonsData: LessonData[] = [
   {
     chapterId: 3,
     episodeId: 1,
-    content: (
+    content: (save) => (
       <>
         <h1>Почему большинство людей ненавидят свою работу?</h1>
         <SpeechBaloon>
@@ -298,7 +298,7 @@ export const lessonsData: LessonData[] = [
   {
     chapterId: 3,
     episodeId: 2,
-    content: (
+    content: (save) => (
       <>
         <h1>Как начать зарабатывать больше?</h1>
         <p>
@@ -335,7 +335,7 @@ export const lessonsData: LessonData[] = [
   {
     chapterId: 3,
     episodeId: 3,
-    content: (
+    content: (save) => (
       <>
         <h1>Какие профессии стоит осваивать прямо сейчас?</h1>
         <p>
@@ -391,7 +391,7 @@ export const lessonsData: LessonData[] = [
   {
     chapterId: 4,
     episodeId: 1,
-    content: (
+    content: (save) => (
       <>
         <h1>Правила инвестирования для новичков</h1>
         <h3>ВНИМАНИЕ!</h3>
@@ -421,7 +421,7 @@ export const lessonsData: LessonData[] = [
   {
     chapterId: 4,
     episodeId: 2,
-    content: (
+    content: (save) => (
       <>
         <h1>Инвестиции в себя. Как вырваться из бедности?</h1>
         <img style={{ margin: "32px 0" }} src={video} />
@@ -476,7 +476,7 @@ export const lessonsData: LessonData[] = [
   {
     chapterId: 5,
     episodeId: 1,
-    content: (
+    content: (save) => (
       <>
         <h1>А что, если я предприниматель?</h1>
         <SpeechBaloon>

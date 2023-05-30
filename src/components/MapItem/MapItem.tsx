@@ -23,7 +23,7 @@ export const MapItem = ({ id, text, style, currentProgress, go }: Props) => {
 
   let itemStyle = style
   if (isCurrent) {
-    itemStyle = { ...itemStyle, bottom: itemStyle.bottom - 20 }
+    itemStyle = { ...itemStyle, bottom: itemStyle.bottom - 44, left: `${parseInt(itemStyle.left) - 10}%` }
   }
 
   return (

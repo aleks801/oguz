@@ -1,5 +1,5 @@
 import styles from "./Footer.module.css"
-import menuBtn from "../../assets/btn_menu.png"
+import mapBtn from "../../assets/btn_map.png"
 import shareBtn from "../../assets/btn_share.png"
 import soundBtn from "../../assets/btn_sound.png"
 import likeBtn from "../../assets/btn_like.png"
@@ -16,7 +16,7 @@ export const Footer = ({ go }: Props) => {
         <img src={likeBtn} />
         <img src={soundBtn} />
       </div>
-      <img src={menuBtn} onClick={() => go("map")} />
+      <img src={mapBtn} onClick={() => go("map")} />
     </div>
   )
 }

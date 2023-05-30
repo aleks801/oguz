@@ -1,3 +1,4 @@
+import { useContext, useEffect } from "react"
 import { Panel } from "@vkontakte/vkui"
 import styles from "./Map.module.css"
 import map from "../../assets/map.png"
@@ -19,22 +20,21 @@ import l1 from "../../assets/loan/1.png"
 import l2 from "../../assets/loan/2.png"
 
 import { mapItems } from "./data"
-import { useContext, useEffect } from "react"
 import { PopupContext } from "store/popupContext"
 import { MapItem } from "components/MapItem/MapItem"
 import { useOnce } from "components/hooks/useOnce"
 import { Clouds } from "components/Clouds/Clouds"
 import { FrameAnimation } from "components/FrameAnimation/FrameAnimation"
+import { useProgress } from "components/hooks/useProgress"
 
 type Props = {
   id: string
   go: (panelId: string) => void
 }
 
-const currentProgress = 2
-
 export const Map = ({ id, go }: Props) => {
   const { setPopup } = useContext(PopupContext)
+  const { progressIndex } = useProgress()
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
@@ -60,7 +60,7 @@ export const Map = ({ id, go }: Props) => {
           <FrameAnimation slight frames={[l2, l1]} framesPerSecond={1} style={{ position: "absolute", top: 1715, right: 20 }} />
           <Clouds />
           {mapItems.map(({ id, text, style }) => (
-            <MapItem currentProgress={currentProgress} go={go} key={id} id={id} text={text} style={style} />
+            <MapItem currentProgress={progressIndex} go={go} key={id} id={id} text={text} style={style} />
           ))}
         </div>
       </div>

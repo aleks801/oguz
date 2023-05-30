@@ -6,25 +6,36 @@ import { useContext, useState } from "react"
 import { LessonFooter } from "components/LessonFooter"
 import { LessonHeader } from "components/LessonHeader/LessonHeader"
 import { PopupContext } from "store/popupContext"
+import { useProgress } from "components/hooks/useProgress"
+import { noop } from "utils/noop"
 
 type Props = {
   id: string
-  chapterId: number
   go: (panelId: string) => void
 }
 
-export const Lesson = ({ id, chapterId, go }: Props) => {
+export const episodes = lessonsData.map((l) => ({ id: `${l.chapterId}_${l.episodeId}`, ...l }))
+
+export const Lesson = ({ id, go }: Props) => {
+  const [, episodeId] = id.split("_")
+  console.log(episodeId)
+
   const { setPopup } = useContext(PopupContext)
+  const { save } = useProgress()
+  const [episodeIndex, setEpisodeIndex] = useState(parseInt(episodeId) || 0)
 
-  const [lessonEpisodes] = useState(lessonsData.filter((lessonData) => lessonData.chapterId === chapterId))
-  const [episodeIndex, setEpisodeIndex] = useState(0)
-
-  const lessonData = lessonEpisodes[episodeIndex]
-  const hasNext = episodeIndex + 1 < lessonEpisodes.length
+  const lessonData = episodes[episodeIndex]
+  const hasNext = episodeIndex + 1 < episodes.length
   const hasPrev = episodeIndex > 0
 
   const handlePrev = () => setEpisodeIndex(episodeIndex - 1)
   const handleNext = () => setEpisodeIndex(episodeIndex + 1)
+  const goNextAndSaveProgress = () => {
+    console.log(lessonData.id)
+
+    save(lessonData.id)
+    hasNext ? handleNext() : go("map")
+  }
 
   return (
     <Panel id={id}>
@@ -32,15 +43,15 @@ export const Lesson = ({ id, chapterId, go }: Props) => {
         <LessonNavigation
           onClose={() => {
             go("map")
-            setPopup("good_continue")
+            // setPopup("good_continue")
           }}
-          onNext={hasNext && handleNext}
-          onPrev={hasPrev && handlePrev}
+          onNext={hasNext ? handleNext : noop}
+          onPrev={hasPrev ? handlePrev : noop}
         />
         <div className={styles.content}>
-          {chapterId !== 0 && <LessonHeader chapterId={lessonData.chapterId} episodeId={lessonData.episodeId} />}
-          {lessonData.content}
-          {chapterId !== 0 && <LessonFooter />}
+          {episodeIndex !== 0 && <LessonHeader chapterId={lessonData.chapterId} episodeId={lessonData.episodeId} />}
+          {lessonData.content(goNextAndSaveProgress)}
+          {episodeIndex !== 0 && <LessonFooter saveProgress={goNextAndSaveProgress} />}
         </div>
       </div>
     </Panel>

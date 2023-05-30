@@ -6,9 +6,10 @@ import { Footer } from "components/Footer/Footer"
 import { Map } from "panels/Map"
 
 import "./index.css"
-import { Lesson } from "panels/Lesson/Lesson"
+import { Lesson, episodes } from "panels/Lesson/Lesson"
 import { PopupDialog } from "components/PopupDialog/PopupDialog"
 import { PopupContext, PopupType } from "store/popupContext"
+// @todo: del
 import { contents } from "panels/Lesson/contents"
 
 const App = () => {
@@ -29,8 +30,8 @@ const App = () => {
                 <PopupDialog />
                 <View activePanel={activePanel}>
                   <Map id="map" go={go} />
-                  {contents.map((contestItem) => (
-                    <Lesson id={`lesson_${contestItem.chapterId}`} go={go} chapterId={contestItem.chapterId} />
+                  {episodes.map((episode, index) => (
+                    <Lesson id={`lesson_${index}`} go={go} key={episode.id} />
                   ))}
                 </View>
                 <Footer go={go} />

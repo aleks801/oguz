@@ -26,6 +26,7 @@ const CloudsRaw = () => {
     <div className={styles.root} ref={ref}>
       {images.map((cloud, index) => (
         <div
+          key={index}
           className={cn(styles.cloud, {
             [styles.right]: between(0, 1),
           })}
