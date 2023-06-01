@@ -35,7 +35,6 @@ type Props = {
 export const Map = ({ id, go }: Props) => {
   const { setPopup } = useContext(PopupContext)
   const { progressIndex } = useProgress()
-  console.log("render")
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
