@@ -2,3 +2,7 @@
   font-family: "Advanced Pixel-7";
   src: url("./assets/advanced_pixel-7.ttf");
 }
+
+* {
+  user-select: none;
+}

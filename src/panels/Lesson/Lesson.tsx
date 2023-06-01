@@ -8,6 +8,7 @@ import { LessonHeader } from "components/LessonHeader/LessonHeader"
 import { PopupContext } from "store/popupContext"
 import { useProgress } from "components/hooks/useProgress"
 import { noop } from "utils/noop"
+import { scrollCheckedMapItem } from "utils/scrollCheckedMapItem"
 
 type Props = {
   id: string
@@ -31,10 +32,16 @@ export const Lesson = ({ id, go }: Props) => {
   const handlePrev = () => setEpisodeIndex(episodeIndex - 1)
   const handleNext = () => setEpisodeIndex(episodeIndex + 1)
   const goNextAndSaveProgress = () => {
-    console.log(lessonData.id)
-
     save(lessonData.id)
-    hasNext ? handleNext() : go("map")
+    if (hasNext) {
+      handleNext()
+      setTimeout(() => {
+        window.scroll(0, 0)
+      }, 200)
+    } else {
+      go("map")
+      scrollCheckedMapItem()
+    }
   }
 
   return (
@@ -43,6 +50,7 @@ export const Lesson = ({ id, go }: Props) => {
         <LessonNavigation
           onClose={() => {
             go("map")
+            scrollCheckedMapItem()
             // setPopup("good_continue")
           }}
           onNext={hasNext ? handleNext : noop}
