@@ -1,6 +1,9 @@
 .root {
   display: flex;
   position: relative;
-  margin-top: 10px;
   gap: 10px;
+}
+
+.root:not(:first-child) {
+  margin-top: 10px;
 }
