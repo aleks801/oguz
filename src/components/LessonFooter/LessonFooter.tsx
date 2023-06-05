@@ -4,11 +4,12 @@ import styles from "./LessonFooter.module.css"
 
 type Props = {
   saveProgress: () => void
+  canGoNext: boolean
 }
 
-export const LessonFooter = ({ saveProgress }: Props) => (
+export const LessonFooter = ({ saveProgress, canGoNext }: Props) => (
   <div className={styles.root}>
     <RateLesson />
-    <Button variant="green_next_big" onClick={saveProgress} />
+    <Button variant="green_next_big" onClick={saveProgress} disabled={!canGoNext} />
   </div>
 )

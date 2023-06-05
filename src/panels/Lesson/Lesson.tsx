@@ -2,7 +2,7 @@ import { Panel } from "@vkontakte/vkui"
 import styles from "./Lesson.module.css"
 import { LessonNavigation } from "components/LessonNavigation/LessonNavigation"
 import { lessonsData } from "./data"
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { LessonFooter } from "components/LessonFooter"
 import { LessonHeader } from "components/LessonHeader/LessonHeader"
 import { PopupContext } from "store/popupContext"
@@ -19,15 +19,26 @@ export const episodes = lessonsData.map((l) => ({ id: `${l.chapterId}_${l.episod
 
 export const Lesson = ({ id, go }: Props) => {
   const [, episodeId] = id.split("_")
-  console.log(episodeId)
-
-  const { setPopup } = useContext(PopupContext)
-  const { save } = useProgress()
   const [episodeIndex, setEpisodeIndex] = useState(parseInt(episodeId) || 0)
-
   const lessonData = episodes[episodeIndex]
   const hasNext = episodeIndex + 1 < episodes.length
   const hasPrev = episodeIndex > 0
+
+  const { setPopup } = useContext(PopupContext)
+  const { save } = useProgress()
+
+  const [hasAnswers, setHasAnswers] = useState<Array<boolean>>(new Array(lessonData.tests).fill(false))
+  const [canGoNext, setCanGoNext] = useState(typeof lessonData === "undefined")
+
+  useEffect(() => {
+    setCanGoNext(hasAnswers.filter(Boolean).length === hasAnswers.length)
+  }, [hasAnswers])
+
+  const onInputGroupSelect = (index: number, answered: boolean) => {
+    const newAnswers = [...hasAnswers]
+    newAnswers[index] = answered
+    setHasAnswers(newAnswers)
+  }
 
   const handlePrev = () => setEpisodeIndex(episodeIndex - 1)
   const handleNext = () => setEpisodeIndex(episodeIndex + 1)
@@ -58,8 +69,12 @@ export const Lesson = ({ id, go }: Props) => {
         />
         <div className={styles.content}>
           {episodeIndex !== 0 && <LessonHeader chapterId={lessonData.chapterId} episodeId={lessonData.episodeId} />}
-          {lessonData.content(goNextAndSaveProgress)}
-          {episodeIndex !== 0 && <LessonFooter saveProgress={goNextAndSaveProgress} />}
+          {lessonData.content({
+            save: goNextAndSaveProgress,
+            onInputGroupSelect,
+            canGoNext,
+          })}
+          {episodeIndex !== 0 && <LessonFooter saveProgress={goNextAndSaveProgress} canGoNext={canGoNext} />}
         </div>
       </div>
     </Panel>

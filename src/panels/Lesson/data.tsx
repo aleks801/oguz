@@ -8,17 +8,23 @@ import { Question } from "components/Question"
 import { SpeechBaloon } from "components/SpeechBaloon"
 import { YesNo } from "components/YesNo"
 
+type ContentInteractions = {
+  save: () => void
+  onInputGroupSelect: (index: number, answered: boolean) => void
+  canGoNext: boolean
+}
 export type LessonData = {
   chapterId: number
   episodeId: number
-  content: (save: () => void) => React.ReactNode
+  tests?: number
+  content: (interactions: ContentInteractions) => React.ReactNode
 }
 
 export const lessonsData: LessonData[] = [
   {
     chapterId: 0,
     episodeId: 1,
-    content: (save) => (
+    content: ({ save }) => (
       <>
         <h1>
           Вводный урок.
@@ -36,7 +42,7 @@ export const lessonsData: LessonData[] = [
   {
     chapterId: 1,
     episodeId: 1,
-    content: (save) => (
+    content: () => (
       <>
         <h1>Главные ошибки в отношениях «Доходы-расходы». Кассовый разрыв</h1>
         <p>
@@ -67,7 +73,7 @@ export const lessonsData: LessonData[] = [
   {
     chapterId: 1,
     episodeId: 2,
-    content: (save) => (
+    content: () => (
       <>
         <h1>Кредиты — зло или возможность? Как правильно работать с займами.</h1>
         <h3>Есть ли у тебя кредиты?</h3>
@@ -167,7 +173,7 @@ export const lessonsData: LessonData[] = [
   {
     chapterId: 2,
     episodeId: 1,
-    content: (save) => (
+    content: () => (
       <>
         <h1>Правила финансовой грамотности</h1>
         <SpeechBaloon>
@@ -192,7 +198,7 @@ export const lessonsData: LessonData[] = [
   {
     chapterId: 2,
     episodeId: 2,
-    content: (save) => (
+    content: () => (
       <>
         <h1>Что приводит тебя к бедности?</h1>
         <AttentionWrapper>
@@ -214,7 +220,8 @@ export const lessonsData: LessonData[] = [
   {
     chapterId: 2,
     episodeId: 3,
-    content: (save) => (
+    tests: 6,
+    content: ({ onInputGroupSelect }) => (
       <>
         <h1>Время – деньги. Как правильно считать цену своей работы?</h1>
         <h3>Прежде чем посмотришь следующее видео, ответь:</h3>
@@ -235,16 +242,19 @@ export const lessonsData: LessonData[] = [
           header="1. Что означает «хочется – перехочется» в интерпретации Игоря Рыбакова?"
           options={["Не стоит мечтать ", "Не стоит тратить больше, чем зарабатываешь", "Не стоит хотеть слишком многого"]}
           type="radio"
+          onCheck={(checked) => onInputGroupSelect(0, checked.filter(Boolean).length > 0)}
         />
         <InputGroup
           header="2. Сколько нужно откладывать в резерв?"
           options={["В зависимости от заработка", "Половину дохода", "Минимум 10% от дохода"]}
           type="radio"
+          onCheck={(checked) => onInputGroupSelect(1, checked.filter(Boolean).length > 0)}
         />
         <InputGroup
           header="3. Сколько нужно вкладывать в будущее?"
           options={["Этого делать не нужно", "Все, что остается после обязательных трат", "Минимум 30% от дохода"]}
           type="radio"
+          onCheck={(checked) => onInputGroupSelect(2, checked.filter(Boolean).length > 0)}
         />
         <InputGroup
           header="4. Что такое Октодом?"
@@ -254,16 +264,19 @@ export const lessonsData: LessonData[] = [
             "Схема важнейших частей человеческой жизни",
           ]}
           type="radio"
+          onCheck={(checked) => onInputGroupSelect(3, checked.filter(Boolean).length > 0)}
         />
         <InputGroup
           header="5. Что значит быть богатым в подходе Рыбакова?"
           options={["Зарабатывать от 1 млн рублей в месяц", "Любить и быть любимым", "Иметь много счастливых минут в жизни"]}
           type="radio"
+          onCheck={(checked) => onInputGroupSelect(4, checked.filter(Boolean).length > 0)}
         />
         <InputGroup
           header="6. На чем не стоит экономить?"
           options={["На второй половине", "На резерве", "На детях", "На поддержании статуса", "На росте доходов"]}
           type="check"
+          onCheck={(checked) => onInputGroupSelect(5, checked.filter(Boolean).length > 0)}
         />
       </>
     ),
@@ -271,7 +284,7 @@ export const lessonsData: LessonData[] = [
   {
     chapterId: 3,
     episodeId: 1,
-    content: (save) => (
+    content: () => (
       <>
         <h1>Почему большинство людей ненавидят свою работу?</h1>
         <SpeechBaloon>
@@ -298,7 +311,7 @@ export const lessonsData: LessonData[] = [
   {
     chapterId: 3,
     episodeId: 2,
-    content: (save) => (
+    content: () => (
       <>
         <h1>Как начать зарабатывать больше?</h1>
         <p>
@@ -335,7 +348,8 @@ export const lessonsData: LessonData[] = [
   {
     chapterId: 3,
     episodeId: 3,
-    content: (save) => (
+    tests: 4,
+    content: ({ onInputGroupSelect }) => (
       <>
         <h1>Какие профессии стоит осваивать прямо сейчас?</h1>
         <p>
@@ -369,21 +383,25 @@ export const lessonsData: LessonData[] = [
           header="1. Какая доля людей по статистике ненавидят свою работу?"
           options={["30%", "50%", "Больше 70%"]}
           type="radio"
+          onCheck={(checked) => onInputGroupSelect(0, checked.filter(Boolean).length > 0)}
         />
         <InputGroup
           header="2. Первый и главный признак плохой работы?"
           options={["Тебе она не нравится", "Низкая зарплата", "Склочный коллектив"]}
           type="radio"
+          onCheck={(checked) => onInputGroupSelect(1, checked.filter(Boolean).length > 0)}
         />
         <InputGroup
           header="3. За какую работу никогда не платят много?"
           options={["Которую делаешь без энтузиазма", "За ту, которую могут делать многие", "В найме вообще много не платят"]}
           type="radio"
+          onCheck={(checked) => onInputGroupSelect(2, checked.filter(Boolean).length > 0)}
         />
         <InputGroup
           header="4. Какие профессии будут выигрывать у алгоритмов и роботов?"
           options={["Нет таких, роботы победят", "Творческие профессии", "Очень простые, люди дешевле роботов"]}
           type="radio"
+          onCheck={(checked) => onInputGroupSelect(3, checked.filter(Boolean).length > 0)}
         />
       </>
     ),
@@ -391,7 +409,7 @@ export const lessonsData: LessonData[] = [
   {
     chapterId: 4,
     episodeId: 1,
-    content: (save) => (
+    content: () => (
       <>
         <h1>Правила инвестирования для новичков</h1>
         <h3>ВНИМАНИЕ!</h3>
@@ -421,7 +439,8 @@ export const lessonsData: LessonData[] = [
   {
     chapterId: 4,
     episodeId: 2,
-    content: (save) => (
+    tests: 4,
+    content: ({ onInputGroupSelect }) => (
       <>
         <h1>Инвестиции в себя. Как вырваться из бедности?</h1>
         <img style={{ margin: "32px 0" }} src={video} />
@@ -449,6 +468,7 @@ export const lessonsData: LessonData[] = [
             "Когда уцепился за лучшую возможность клещами",
           ]}
           type="radio"
+          onCheck={(checked) => onInputGroupSelect(0, checked.filter(Boolean).length > 0)}
         />
         <InputGroup
           header="2. В каком случае можно начинать инвестировать?"
@@ -459,16 +479,19 @@ export const lessonsData: LessonData[] = [
             "Ты больше не хочешь работать",
           ]}
           type="check"
+          onCheck={(checked) => onInputGroupSelect(1, checked.filter(Boolean).length > 0)}
         />
         <InputGroup
           header="3. Главная ошибка начинающих инвесторов?"
           options={["Отсутствие знаний о ценных бумагах", "Инвестиции в себя", "Инвестировать с кредитным плечом"]}
           type="radio"
+          onCheck={(checked) => onInputGroupSelect(2, checked.filter(Boolean).length > 0)}
         />
         <InputGroup
           header="4. Какой вид инвестиций я, Игорь Рыбаков, советую для молодых людей?"
           options={["В недвижимость", "В акции крупных промышленных компаний", "В IT сектор", "Инвестиции в себя"]}
           type="radio"
+          onCheck={(checked) => onInputGroupSelect(3, checked.filter(Boolean).length > 0)}
         />
       </>
     ),
@@ -476,7 +499,8 @@ export const lessonsData: LessonData[] = [
   {
     chapterId: 5,
     episodeId: 1,
-    content: (save) => (
+    tests: 5,
+    content: ({ onInputGroupSelect }) => (
       <>
         <h1>А что, если я предприниматель?</h1>
         <SpeechBaloon>
@@ -499,6 +523,7 @@ export const lessonsData: LessonData[] = [
           header="1. Чего тебе больше всего хочется сейчас в твоем деле?"
           options={["Автономности в принятии решений", "Больше денег", "Реализации своих собственных идей"]}
           type="radio"
+          onCheck={(checked) => onInputGroupSelect(0, checked.filter(Boolean).length > 0)}
         />
         <InputGroup
           header="2. Готов/а ли ты брать на себя ответственность?"
@@ -508,11 +533,13 @@ export const lessonsData: LessonData[] = [
             "Готов брать ответственность и решать то, что произошло не по моей вине",
           ]}
           type="radio"
+          onCheck={(checked) => onInputGroupSelect(2, checked.filter(Boolean).length > 0)}
         />
         <InputGroup
           header="3. Готов/а ли ты расставаться с людьми из команды?"
           options={["Да, если они мне мешают", "Да, если человек мешает делу", "Нет, я не могу уволить человека"]}
           type="radio"
+          onCheck={(checked) => onInputGroupSelect(3, checked.filter(Boolean).length > 0)}
         />
         <InputGroup
           header="4. Что для тебя деньги?"
@@ -522,6 +549,7 @@ export const lessonsData: LessonData[] = [
             "Ресурс для свободы и автономности",
           ]}
           type="radio"
+          onCheck={(checked) => onInputGroupSelect(4, checked.filter(Boolean).length > 0)}
         />
         <AttentionWrapper>
           <Attention>Бонус видео после теста</Attention>
