@@ -20,6 +20,7 @@ export const MapItem = ({ id, text, style, currentProgress, go }: Props) => {
   const { sex } = useVkProfileData()
   const isCurrent = id === currentProgress
   const isCompleted = currentProgress >= id
+  const isLocked = !isCurrent && !isCompleted
 
   let itemStyle = style
   if (isCurrent) {
@@ -31,7 +32,11 @@ export const MapItem = ({ id, text, style, currentProgress, go }: Props) => {
       data-checked={isCurrent}
       className={cn(styles.root, { [styles.vertical]: isCurrent })}
       style={itemStyle}
-      onClick={() => go(`lesson_${id}`)}
+      onClick={() => {
+        if (!isLocked) {
+          go(`lesson_${id}`)
+        }
+      }}
     >
       {isCurrent && (
         <div>
