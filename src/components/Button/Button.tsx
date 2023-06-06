@@ -5,6 +5,7 @@ import btnYes from "assets/btn_yes.png"
 import btnYesGreen from "assets/btn_yes_green.png"
 import btnNo from "assets/btn_no.png"
 import styles from "./Button.module.css"
+import { noop } from "utils/noop"
 
 type ButtonVariant = "green_next" | "next" | "yes" | "no" | "yes_green" | "green_next_big"
 
@@ -24,5 +25,7 @@ const variantImageMapping: Record<ButtonVariant, string> = {
 }
 
 export const Button = ({ onClick, variant, disabled }: ButtonProps) => {
-  return <img className={disabled ? styles.disabled : ""} src={variantImageMapping[variant]} onClick={onClick} />
+  return (
+    <img className={disabled ? styles.disabled : ""} src={variantImageMapping[variant]} onClick={disabled ? noop : onClick} />
+  )
 }
