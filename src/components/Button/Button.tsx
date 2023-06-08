@@ -15,11 +15,24 @@ import btnLike from "assets/btn_like.png"
 import btnLikePressed from "assets/btn_like_pressed.png"
 import btnSound from "assets/btn_sound.png"
 import btnSoundPressed from "assets/btn_sound_pressed.png"
+import btnSoundOff from "assets/btn_sound_off.png"
+import btnSoundOffPressed from "assets/btn_sound_off_pressed.png"
 import styles from "./Button.module.css"
 import { noop } from "utils/noop"
 import { useState } from "react"
 
-type ButtonVariant = "green_next" | "next" | "yes" | "no" | "yes_green" | "green_next_big" | "share" | "like" | "sound" | "map"
+type ButtonVariant =
+  | "green_next"
+  | "next"
+  | "yes"
+  | "no"
+  | "yes_green"
+  | "green_next_big"
+  | "share"
+  | "like"
+  | "sound"
+  | "sound_off"
+  | "map"
 
 type ButtonProps = {
   onClick?: () => void
@@ -37,6 +50,7 @@ const variantImageMapping: Record<ButtonVariant, string> = {
   share: btnShare,
   like: btnLike,
   sound: btnSound,
+  sound_off: btnSoundOff,
   map: btnMap,
 }
 
@@ -50,6 +64,7 @@ const variantPressedImageMapping: Record<ButtonVariant, string> = {
   share: btnSharePressed,
   like: btnLikePressed,
   sound: btnSoundPressed,
+  sound_off: btnSoundOffPressed,
   map: btnMapPressed,
 }
 
