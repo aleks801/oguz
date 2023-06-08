@@ -1,24 +1,26 @@
+import useSound from "use-sound"
 import styles from "./Footer.module.css"
-import mapBtn from "../../assets/btn_map.png"
-import shareBtn from "../../assets/btn_share.png"
-import soundBtn from "../../assets/btn_sound.png"
-import likeBtn from "../../assets/btn_like.png"
+import audio1 from "../../assets/audio/1.mp3"
 import { scrollCheckedMapItem } from "utils/scrollCheckedMapItem"
+import { Button } from "components/Button"
+import { useEffect } from "react"
 
 type Props = {
   go: (panelId: string) => void
 }
 
 export const Footer = ({ go }: Props) => {
+  const [play, { stop }] = useSound(audio1)
+
   return (
     <div className={styles.root}>
       <div className={styles.actions}>
-        <img src={shareBtn} />
-        <img src={likeBtn} />
-        <img src={soundBtn} />
+        <Button variant="share" />
+        <Button variant="like" />
+        <Button variant="sound" onClick={play} />
       </div>
-      <img
-        src={mapBtn}
+      <Button
+        variant="map"
         onClick={() => {
           go("map")
           scrollCheckedMapItem()
