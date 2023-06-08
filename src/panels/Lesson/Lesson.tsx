@@ -28,10 +28,14 @@ export const Lesson = ({ id, go }: Props) => {
   const { save } = useProgress()
 
   const [hasAnswers, setHasAnswers] = useState<Array<boolean>>(new Array(lessonData.tests).fill(false))
-  const [canGoNext, setCanGoNext] = useState(typeof lessonData === "undefined")
+  const [canGoNext, setCanGoNext] = useState(typeof lessonData.tests === "undefined")
 
   useEffect(() => {
-    setCanGoNext(hasAnswers.filter(Boolean).length === hasAnswers.length)
+    if (typeof lessonData.tests === "undefined") {
+      setCanGoNext(true)
+    } else {
+      setCanGoNext(hasAnswers.filter(Boolean).length === hasAnswers.length)
+    }
   }, [hasAnswers])
 
   const onInputGroupSelect = (index: number, answered: boolean) => {

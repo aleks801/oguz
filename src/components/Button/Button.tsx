@@ -19,7 +19,7 @@ import btnSoundOff from "assets/btn_sound_off.png"
 import btnSoundOffPressed from "assets/btn_sound_off_pressed.png"
 import styles from "./Button.module.css"
 import { noop } from "utils/noop"
-import { useState } from "react"
+import { CSSProperties, useState } from "react"
 
 type ButtonVariant =
   | "green_next"
@@ -38,6 +38,7 @@ type ButtonProps = {
   onClick?: () => void
   variant: ButtonVariant
   disabled?: boolean
+  style?: CSSProperties
 }
 
 const variantImageMapping: Record<ButtonVariant, string> = {
@@ -68,7 +69,7 @@ const variantPressedImageMapping: Record<ButtonVariant, string> = {
   map: btnMapPressed,
 }
 
-export const Button = ({ onClick, variant, disabled }: ButtonProps) => {
+export const Button = ({ onClick, variant, disabled, style }: ButtonProps) => {
   const [pressed, setPressed] = useState(false)
 
   return (
@@ -80,6 +81,7 @@ export const Button = ({ onClick, variant, disabled }: ButtonProps) => {
       onMouseDown={() => setPressed(true)}
       onMouseUp={() => setPressed(false)}
       onClick={disabled ? noop : onClick}
+      style={style}
     />
   )
 }

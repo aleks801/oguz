@@ -73,16 +73,17 @@ export const lessonsData: LessonData[] = [
   {
     chapterId: 1,
     episodeId: 2,
-    content: () => (
+    tests: 1,
+    content: ({ onInputGroupSelect }) => (
       <>
         <h1>Кредиты — зло или возможность? Как правильно работать с займами.</h1>
         <h3>Есть ли у тебя кредиты?</h3>
         <YesNo />
-        <h3>Сколько процентов от дохода занимают твои кредиты?</h3>
         <InputGroup
           header="Сколько процентов от дохода занимают твои кредиты?"
           options={["10-30%", "30-50%", "Более 50%", "Меньше 10%"]}
           type="radio"
+          onCheck={(checked) => onInputGroupSelect(0, checked.filter(Boolean).length > 0)}
         />
         <AttentionWrapper>
           <Attention>Теперь приступай к просмотру видео</Attention>

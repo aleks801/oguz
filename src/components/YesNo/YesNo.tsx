@@ -11,8 +11,8 @@ export const YesNo = () => {
 
   return (
     <div className={styles.root}>
-      <Button variant="yes" disabled={checked !== "yes"} onClick={() => handleCheck("yes")} />
-      <Button variant="no" disabled={checked !== "no"} onClick={() => handleCheck("no")} />
+      <Button variant="yes" style={{ opacity: checked === "yes" ? 1 : 0.5 }} onClick={() => handleCheck("yes")} />
+      <Button variant="no" style={{ opacity: checked === "no" ? 1 : 0.5 }} onClick={() => handleCheck("no")} />
     </div>
   )
 }
