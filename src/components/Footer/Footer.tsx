@@ -21,7 +21,7 @@ export const Footer = ({ go }: Props) => {
         <Button variant="share" onClick={share} />
         <Button variant="like" onClick={favorites} />
         <Button
-          variant={playing ? "sound_off" : "sound"}
+          variant={!playing ? "sound_off" : "sound"}
           onClick={() => {
             if (playing) {
               pause()
