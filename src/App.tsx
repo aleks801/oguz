@@ -1,16 +1,15 @@
 import { useState } from "react"
 import { View, AdaptivityProvider, AppRoot, ConfigProvider, SplitLayout, SplitCol } from "@vkontakte/vkui"
-import "@vkontakte/vkui/dist/vkui.css"
 
 import { Footer } from "components/Footer/Footer"
 import { Map } from "panels/Map"
 
-import "./index.css"
 import { Lesson, episodes } from "panels/Lesson/Lesson"
 import { PopupDialog } from "components/PopupDialog/PopupDialog"
 import { PopupContext, PopupType } from "store/popupContext"
-// @todo: del
-import { contents } from "panels/Lesson/contents"
+
+import "@vkontakte/vkui/dist/vkui.css"
+import "./index.css"
 
 const App = () => {
   const [activePanel, setActivePanel] = useState("map")

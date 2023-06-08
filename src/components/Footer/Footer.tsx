@@ -3,7 +3,6 @@ import styles from "./Footer.module.css"
 import audio1 from "../../assets/audio/1.mp3"
 import { scrollCheckedMapItem } from "utils/scrollCheckedMapItem"
 import { Button } from "components/Button"
-import { useEffect } from "react"
 
 type Props = {
   go: (panelId: string) => void
